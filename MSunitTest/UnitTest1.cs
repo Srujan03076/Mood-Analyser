@@ -38,5 +38,17 @@ namespace MoodAnalyserMSTest
             Assert.AreEqual("HAPPY", result);
         }
         #endregion
+
+        #region UC-3
+        [TestMethod]
+        [ExpectedException(typeof(MoodAnalyserCustomException))]
+        public void GivenMoodEmpty_ShouldThrowException()
+        {
+            MoodAnalyser obj = new MoodAnalyser();
+            string result = obj.analyseMood();
+            Assert.AreEqual("HAPPY", result);
+
+        }
+        #endregion
     }
 }
