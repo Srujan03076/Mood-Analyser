@@ -84,6 +84,40 @@ namespace MoodAnalyserMSTest
             expected.Equals(obj);
 
         }
-        #endregion UC-4
+        #endregion
+
+        #region UC-5
+
+        [TestMethod]
+        public void GivenMoodAnalyser_ShouldReturnMoodAnalyserObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MSTestMoodAnalyser.MoodAnalyser", "MoodAnalyser", "SAD");
+            expected.Equals(obj);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MoodAnalyserCustomException))]
+
+        public void GivenMoodAnalyserWrongClassName_ShouldThrowMoodAnalysisException()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MSTestMoodAnalyser.moodnalyser", "MoodAnalyser", "SAD");
+            expected.Equals(obj);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MoodAnalyserCustomException))]
+
+        public void GivenMoodAnalyserClassNameWithNoProperConstructor_ShouldThrowMoodAnalysisException()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MSTestMoodAnalyser.MoodAnalyser", "moodanalyser", "SAD");
+            expected.Equals(obj);
+        }
+        #endregion
     }
 }
